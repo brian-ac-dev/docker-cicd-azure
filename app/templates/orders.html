@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Pedidos · PopShop{% endblock %}
+
+{% block content %}
+  <h1>Pedidos</h1>
+  <p class="muted">{{ orders|length }} registros demo en memoria.</p>
+
+  <section class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Producto</th>
+          <th>Importe (EUR)</th>
+          <th>Items</th>
+          <th>Estado</th>
+          <th>Creado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in orders %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.customer_id }}</td>
+            <td>{{ item.product_id }}</td>
+            <td>{{ "%.2f"|format(item.amount_eur) }}</td>
+            <td>{{ item.items }}</td>
+            <td><span class="badge">{{ item.status }}</span></td>
+            <td>{{ item.created_at }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

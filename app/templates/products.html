@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Productos · PopShop{% endblock %}
+
+{% block content %}
+  <h1>Productos</h1>
+  <p class="muted">{{ products|length }} registros demo en memoria.</p>
+
+  <section class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Precio (EUR)</th>
+          <th>Stock</th>
+          <th>SKU</th>
+          <th>Actualizado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in products %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td><span class="badge">{{ item.category }}</span></td>
+            <td>{{ "%.2f"|format(item.price_eur) }}</td>
+            <td>{{ item.stock }}</td>
+            <td>{{ item.sku }}</td>
+            <td>{{ item.updated_at }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

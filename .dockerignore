@@ -1,0 +1,35 @@
+# Git y CI
+.git
+.github
+.gitignore
+
+# Python — bytecode y caches (no van en la imagen)
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Entorno local de desarrollo
+.venv/
+venv/
+ENV/
+.env
+.env.*
+
+# Dev-only (producción usa wsgi.py + gunicorn)
+run.py
+
+# Docs y config del repo (no necesarios en runtime)
+*.md
+.atl/
+.vscode/

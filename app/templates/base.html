@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}PopShop{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">PopShop</div>
+        <div class="header-actions">
+          <nav>
+            <a href="{{ url_for('main.index') }}" class="{% if request.endpoint == 'main.index' %}active{% endif %}">Inicio</a>
+            <a href="{{ url_for('main.products') }}" class="{% if request.endpoint == 'main.products' %}active{% endif %}">Productos</a>
+            <a href="{{ url_for('main.customers') }}" class="{% if request.endpoint == 'main.customers' %}active{% endif %}">Clientes</a>
+            <a href="{{ url_for('main.orders') }}" class="{% if request.endpoint == 'main.orders' %}active{% endif %}">Pedidos</a>
+            <a href="{{ url_for('main.runtime') }}" class="{% if request.endpoint == 'main.runtime' %}active{% endif %}">Runtime</a>
+          </nav>
+          <div class="user-profile" title="{{ user_name }}">
+            <img
+              class="user-avatar"
+              src="{{ user_avatar_url }}"
+              alt="Foto de perfil de {{ user_name }}"
+              width="36"
+              height="36"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="user-name">{{ user_name }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-copy">PopShop · Flask + Docker · CI/CD Azure</p>
+        <aside class="skool-cta">
+          <p>¿Practicando este proyecto? Compártelo en la comunidad.</p>
+          <a class="skool-cta-btn" href="{{ skool_url }}" target="_blank" rel="noopener noreferrer">
+            Publicar en Skool →
+          </a>
+        </aside>
+      </div>
+    </footer>
+  </body>
+</html>

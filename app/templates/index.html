@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio · PopShop{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div>
+      <p class="hero-kicker">Tienda demo · sin base de datos</p>
+      <h1>{{ greeting }}, bienvenido a PopShop</h1>
+      <p class="muted">Panel con métricas en vivo, producto del día y últimos pedidos.</p>
+    </div>
+    <div class="deploy-badge">
+      <span>Deploy</span>
+      <strong>{{ build_tag }}</strong>
+    </div>
+  </section>
+
+  <div class="stat-row">
+    <article class="stat-card">
+      <p class="stat-label">Ingresos demo</p>
+      <p class="stat">{{ "%.0f"|format(stats.revenue_eur) }} €</p>
+    </article>
+    <article class="stat-card">
+      <p class="stat-label">Ticket medio</p>
+      <p class="stat">{{ "%.2f"|format(stats.avg_order_eur) }} €</p>
+    </article>
+    <article class="stat-card">
+      <p class="stat-label">Entregados</p>
+      <p class="stat">{{ stats.delivered_pct }}%</p>
+    </article>
+    <article class="stat-card">
+      <p class="stat-label">Top categoría</p>
+      <p class="stat stat-text">{{ stats.top_category }}</p>
+    </article>
+  </div>
+
+  <div class="split-grid">
+    <section class="card featured">
+      <p class="card-kicker">Producto del día</p>
+      <h2>{{ featured.name }}</h2>
+      <p class="muted">{{ featured.category }} · SKU {{ featured.sku }}</p>
+      <div class="featured-meta">
+        <span class="price">{{ "%.2f"|format(featured.price_eur) }} €</span>
+        <span class="badge {% if featured.stock > 0 %}ok{% endif %}">
+          {% if featured.stock > 0 %}{{ featured.stock }} en stock{% else %}Agotado{% endif %}
+        </span>
+      </div>
+      <a href="{{ url_for('main.products') }}">Ver catálogo →</a>
+    </section>
+
+    <section class="card">
+      <p class="card-kicker">Accesos rápidos</p>
+      <div class="quick-links">
+        <a href="{{ url_for('main.products') }}"><strong>{{ product_count }}</strong> productos</a>
+        <a href="{{ url_for('main.customers') }}"><strong>{{ customer_count }}</strong> clientes</a>
+        <a href="{{ url_for('main.orders') }}"><strong>{{ order_count }}</strong> pedidos</a>
+        <a href="{{ url_for('main.runtime') }}">Runtime &amp; deploy</a>
+        <a href="{{ url_for('main.health') }}">/health (JSON)</a>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel activity">
+    <div class="panel-head">
+      <h2>Actividad reciente</h2>
+      <a href="{{ url_for('main.orders') }}">Ver todos →</a>
+    </div>
+    <ul class="activity-list">
+      {% for order in recent_orders %}
+        <li>
+          <div>
+            <strong>{{ order.id }}</strong>
+            <span class="muted">{{ order.product_name }}</span>
+          </div>
+          <div class="activity-meta">
+            <span class="badge">{{ order.status }}</span>
+            <span>{{ "%.2f"|format(order.amount_eur) }} €</span>
+            <time class="muted">{{ order.created_at }}</time>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}

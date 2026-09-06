@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Runtime · PopShop{% endblock %}
+
+{% block content %}
+  <h1>Runtime</h1>
+  <p class="muted">Información del proceso y del entorno de ejecución.</p>
+
+  <section class="panel">
+    <dl class="kv-grid">
+      <div class="kv">
+        <dt>Build</dt>
+        <dd>{{ info.build_tag }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Versión</dt>
+        <dd>{{ info.app_version }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Aplicación</dt>
+        <dd>{{ info.app_name }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Python</dt>
+        <dd>{{ info.python_version }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Plataforma</dt>
+        <dd>{{ info.platform }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Hostname</dt>
+        <dd>{{ info.hostname }}</dd>
+      </div>
+      <div class="kv">
+        <dt>PID</dt>
+        <dd>{{ info.pid }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Uptime</dt>
+        <dd><span class="badge ok">{{ info.uptime }}</span></dd>
+      </div>
+      <div class="kv">
+        <dt>Inicio (UTC)</dt>
+        <dd>{{ info.started_at_utc }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Hora servidor (UTC)</dt>
+        <dd>{{ info.server_time_utc }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Directorio</dt>
+        <dd>{{ info.cwd }}</dd>
+      </div>
+      <div class="kv">
+        <dt>Ejecutable</dt>
+        <dd>{{ info.executable }}</dd>
+      </div>
+      <div class="kv">
+        <dt>FLASK_ENV</dt>
+        <dd>{{ info.flask_env }}</dd>
+      </div>
+      <div class="kv">
+        <dt>PORT</dt>
+        <dd>{{ info.port }}</dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}

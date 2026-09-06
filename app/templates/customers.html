@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes · PopShop{% endblock %}
+
+{% block content %}
+  <h1>Clientes</h1>
+  <p class="muted">{{ customers|length }} registros demo en memoria.</p>
+
+  <section class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Ciudad</th>
+          <th>Estado</th>
+          <th>Pedidos</th>
+          <th>Cliente desde</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in customers %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.city }}</td>
+            <td><span class="badge">{{ item.status }}</span></td>
+            <td>{{ item.orders }}</td>
+            <td>{{ item.since }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

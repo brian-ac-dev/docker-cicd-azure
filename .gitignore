@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+
+# Tests y linters
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secretos y entorno local
+.env
+.env.*
+
+# IDE / herramientas locales
+.vscode/
+.atl/
+
+# OS
+.DS_Store
+Thumbs.db
